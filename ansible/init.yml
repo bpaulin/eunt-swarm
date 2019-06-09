@@ -1,0 +1,33 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    ansible_user: pi
+    ansible_password: raspberry
+  tasks:
+  - name: test connection
+    ping:
+
+  # User management
+  - name: Create alternative user
+    user:
+      name: "{{ alternative_user }}"
+      group: sudo
+      uid: 5000
+      password: "{{ alternative_user_password | password_hash('sha512', password_salt) }}"
+      state: present
+      update_password: always
+      shell: /bin/bash
+
+  - name: Change pi password
+    user:
+      name: pi
+      password: "{{ new_pi_password | password_hash('sha512', password_salt) }}"
+      state: present
+      update_password: always
+
+  - name: Set authorized key copying it from current user
+    authorized_key:
+      user: "{{ alternative_user }}"
+      state: present
+      key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"

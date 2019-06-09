@@ -1,0 +1,4 @@
+password_salt: XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+alternative_user: XXXXXXXXXXXXXXX
+alternative_user_password: XXXXXXXXXXXXXXXXXXXX
+new_pi_password: XXXXXXXXXXXXXXXXXXXXXXX

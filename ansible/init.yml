@@ -18,6 +18,9 @@
       state: present
       update_password: always
       shell: /bin/bash
+      groups:
+       - sudo
+      append: true
 
   - name: Change pi password
     user:

@@ -1,8 +1,8 @@
-192.168.1.102
-192.168.1.103
+node02 ansible_host=192.168.1.102
+node03 ansible_host=192.168.1.103
 
 [workers]
-192.168.1.102
+node03
 
 [managers]
-192.168.1.103
+node02
